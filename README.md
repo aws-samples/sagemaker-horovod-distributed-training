@@ -45,8 +45,14 @@ src
  |- horovod_launcher.py: Laucnher script to launch horovod training script.
  |- train_mnist_hvd.py: Mnist horovod training script 
 notebooks
- |- Tensorflow Distributed Training - Horovod-BYOC.ipynb: Sample notebook to launch the horovod distributed training example. 
+ |- Tensorflow Distributed Training - Horovod-BYOC-Example.ipynb: Sample notebook to launch the horovod distributed training example. 
 ```
+
+#### Steps for launching Jupyter Notebook:
+- Navigate the above file structure to the notebook in 'notebooks' directory
+- If prompted select Jupyter kernel conda_tensorflow_p36
+- Launch and execute the notebook. 
+Note that depending on your choice of the host machine, it may take as long as 10 min to build the container the 1st time out. 
 
 ## License
 
