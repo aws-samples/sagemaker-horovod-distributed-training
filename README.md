@@ -30,6 +30,24 @@ train(script="train_mnist_hvd.py",
         hyperparameters={"sagemaker_mpi_enabled": "True"})
 ```
 
+#### File Structure
+
+```buildoutcfg
+
+bin
+ |- docker-build.sh: Script to build docker file
+ |- push_image.sh: Script to push socker to ECR repository.
+docker
+ |- Dockerfile.cpu: Docker file to build BYOC container.
+ |- resources: Resource files required to build docker.
+src
+ |- data/: traning data
+ |- horovod_launcher.py: Laucnher script to launch horovod training script.
+ |- train_mnist_hvd.py: Mnist horovod training script 
+notebooks
+ |- Tensorflow Distributed Training - Horovod-BYOC.ipynb: Sample notebook to launch the horovod distributed training example. 
+```
+
 ## License
 
 This library is licensed under the Apache 2.0 License. 
