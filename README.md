@@ -50,7 +50,7 @@ notebooks
 
 #### Steps for launching Jupyter Notebook:
 - Navigate the above file structure to the notebook in 'notebooks' directory
-- If prompted select Jupyter kernel conda_tensorflow_p36
+- If prompted, select Jupyter kernel conda_tensorflow_p36
 - Launch and execute the notebook. 
 Note that depending on your choice of the host machine, it may take as long as 10 min to build the container the 1st time out. 
 
