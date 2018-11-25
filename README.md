@@ -6,7 +6,7 @@ This lab demonstrates two concepts on a simple MNIST dataset and a keras-based d
 - SageMaker distributed training with Horovod framework
 - SageMaker "script mode" which allows the keras train_mnist_hvd.py python script to be the entry point to SageMaker train() API. This approach makes it possible not to rebuild the training container with every change made to train_mnist_hvd.py
 
-#### A. SageMaker's Horovod Distribugted Training Framework 
+#### A. SageMaker's Horovod Distributed Training Framework 
 
 As you know, SageMaker built-in training algorithms already provide ability to distribute workload among multiple compute nodes via 'train_instance_count' parameter. Up until now, if one were to bring his/her own algorithm, they would have to take care of providing their own disributed compute framework and encapsulating it in a container. Horovod has previously been enabled on Amazon Deep Learning AMIs 
 (https://aws.amazon.com/blogs/machine-learning/aws-deep-learning-amis-now-include-horovod-for-faster-multi-gpu-tensorflow-training-on-amazon-ec2-p3-instances/). 
