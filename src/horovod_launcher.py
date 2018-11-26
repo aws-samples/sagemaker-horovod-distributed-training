@@ -11,6 +11,7 @@ import signal
 import os
 import subprocess
 import time
+import argparse
 
 import sagemaker_containers
 
@@ -20,13 +21,11 @@ from sagemaker_containers.beta import framework
 
 logger = _logging.get_logger()
 
-
 # MPI files.
 _MPI_SCRIPT = "/mpi_script.sh"
 _MPI_IS_RUNNING = "/mpi_is_running"
 _MPI_IS_FINISHED = "/mpi_is_finished"
 _CHANGE_HOSTNAME_LIBRARY = "/libchangehostname.so"
-
 
 
 def _change_hostname(current_host):
@@ -60,7 +59,7 @@ def _can_connect(host, port, s):
         return False
 
 
-def _create_mpi_script(env,train_script):
+def _create_mpi_script(env, train_script):
     """Creates a MPI script with user provided information.
 
         For distributed training: the 'master node' runs mpirun with this script,
@@ -157,8 +156,7 @@ class MPIMaster(object):
                       + " -mca orte_abort_on_non_zero_status 1" \
                       + " -x NCCL_MIN_NRINGS=8 -x NCCL_DEBUG=INFO" \
                       + " -x LD_LIBRARY_PATH -x PATH" \
-                      + " -x LD_PRELOAD={}".format(_CHANGE_HOSTNAME_LIBRARY) \
-
+                      + " -x LD_PRELOAD={}".format(_CHANGE_HOSTNAME_LIBRARY)
         for v in credential_vars:
             if v in os.environ:
                 mpi_command += " -x {}".format(v)
@@ -176,7 +174,7 @@ class MPIMaster(object):
         self._run_mpi_on_all_nodes()
 
     def is_master(self, hosts, current_host):
-        print("Hosts: "+str(hosts)+" current host: "+str(current_host))
+        print("Hosts: " + str(hosts) + " current host: " + str(current_host))
         return current_host == sorted(list(hosts))[0]
 
 
@@ -203,17 +201,12 @@ class MPIWorker(object):
         print("Training process started by MPI on worker node %s stopped", current_host)
 
 
-def execute_horovod_script(train_script, processes_per_host=1):
-    env = sagemaker_containers.training_env()
-    _horovod_run(env, processes_per_host, train_script)
-
-
 def _horovod_run(env, processes_per_host, train_script):
     print("MPI requested with process per hosts: {}"
-                .format(processes_per_host))
+          .format(processes_per_host))
 
     _setup_mpi_environment(env)
-    _create_mpi_script(env,train_script)
+    _create_mpi_script(env, train_script)
 
     mpi_master = MPIMaster(env, processes_per_host)
     if mpi_master.is_master(env.hosts, env.current_host):
@@ -254,4 +247,28 @@ def timeout(seconds=0, minutes=0, hours=0):
     finally:
         signal.alarm(0)
 
-execute_horovod_script(train_script="train_mnist_hvd.py")
+
+def execute_horovod_script(train_script, processes_per_host):
+    print("Starting Horovod training with Horovod train script: {} Num processes per host: {}".format(train_script,
+                                                                                                      processes_per_host))
+    env = sagemaker_containers.training_env()
+    _horovod_run(env, processes_per_host, train_script)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('--horovod-train-script', required=True, help="Name of the horovod training script to execute.")
+    parser.add_argument('--num-processes-per-host', default=1, help="Number of processes per host.", type=int)
+
+    return parser.parse_known_args()
+
+
+def main():
+    args, unknown = parse_args()
+    execute_horovod_script(train_script=args.horovod_train_script,
+                           processes_per_host=args.num_processes_per_host)
+
+
+if __name__ == "__main__":
+    main()
