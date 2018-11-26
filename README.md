@@ -19,15 +19,10 @@ For this lab, we will be instantiating CPU compute nodes for simplicity and scal
 #### B. SageMaker's Script Mode.
 Previously (as in Lab 2-4 of this workshop), in BringYourOwnContainer situation, a user had to make his/her training Python script a part of the container. Therefore, during the debug process, every Python script change required rebuilding the container. SageMaker's "script mode" allows one to build the container once and then debug and change a python script  without rebuilding the container with every change. Instead, a user specifies script's "entry point" via 'train(script="myscript.py",....) parameter, for example:
 ```
-train(script="train_mnist_hvd.py",
-        instance_type="ml.c4.xlarge",
-        sagemaker_local_session=sage_session,
-        docker_image=docker_container_image,
-        training_data_path={'train': train_input, 'test': test_input},
-        source_dir=source_dir,
-        train_instance_count=8,
-        base_job_name="tf-hvdwdwdw-cpu",
-        hyperparameters={"sagemaker_mpi_enabled": "True"})
+
+train(horovod_train_script = "train_mnist_hvd.py",
+      instance_count = 12,
+      num_of_processes_per_host = 1)
 ```
 
 #### File Structure
