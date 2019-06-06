@@ -23,16 +23,56 @@ In this lab, we will be instantiating CPU compute nodes for simplicity and scala
 
 #### Steps for launching Jupyter Notebook:
 Open SageMaker Console
-![Navigate to Sagemaker Service](../images/image-1.PNG "Navigate to Sagemaker")
+![Navigate to Sagemaker Service](/images/image-1.png)
 
 Navigate to SageMaker Notebooks
-![Navigate to Sagemaker Notebooks](../images/image-2.PNG "Navigate to Sagemaker")
+![Navigate to Sagemaker Notebooks](/images/image-2.png)
 
 Create a SageMaker Notebook Instance
-![Create a Sagemaker Notebooks](../images/image-3.PNG "Navigate to Sagemaker")
+![Creae Sagemaker Notebooks](/images/image-3.png)
 
 Give the SageMaker Notebook Instance a name (note that '_' are not allowed) and click on "Create a new role".
-![Create a Sagemaker Notebooks](../images/image-4.PNG "Navigate to Sagemaker")
+![Name Sagemaker Notebooks](/images/image-4.png)
+
+Select "Any S3 bucket" and clicke on "Create role"
+![Create IAM role for Sagemaker](/images/image-5.png)
+
+We now need to add a few more security policies to our newly created IAM SageMaker role.
+
+Click on newly created IAM SageMaker role
+![Create IAM role for Sagemaker](/images/image-6.png)
+
+Search for "EC2Container" and add AmazonEC2ContanerRegistryFullAccess policy (click on the radio button to the left)
+![Create IAM role for Sagemaker](/images/image-7.png)
+
+Search for "VPC" and add AmazonVPCAccess policy (click on the radio button to the left)
+![Create IAM role for Sagemaker](/images/image-8.png)
+
+Attach policies. Your policy list for the SageMaker IAM role should look like this
+![Create IAM role for Sagemaker](/images/image-9.png)
+
+We need a custom policy to allow full access to CloudFormation service. 
+Scroll down and click on create in-line policy. Select JSON and paste the following:
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "cloudformation:*",
+            "Resource": "*"
+        }
+    ]
+}
+
+![Create IAM role for Sagemaker](/images/image-10.png)
+
+Give your policy a name and click on "Create Policy"
+![Create IAM role for Sagemaker](/images/image-9.png)
+
+
+
 
 
 
