@@ -21,39 +21,56 @@ To reduce network delays between compute nodes, it is advisable to locate them w
 
 In this lab, we will be instantiating CPU compute nodes for simplicity and scalability. 
 
-#### Steps for launching Jupyter Notebook:
-Open SageMaker Console
+### Steps for launching Jupyter Notebook:
+#### Open SageMaker Console
 ![Navigate to Sagemaker Service](/images/image-1.png)
 
-Navigate to SageMaker Notebooks
+
+
+#### Navigate to SageMaker Notebooks
 ![Navigate to Sagemaker Notebooks](/images/image-2.png)
 
-Create a SageMaker Notebook Instance
+
+
+#### Create a SageMaker Notebook Instance
 ![Creae Sagemaker Notebooks](/images/image-3.png)
 
-Give the SageMaker Notebook Instance a name (note that '_' are not allowed) and click on "Create a new role".
+
+
+#### Give the SageMaker Notebook Instance a name (note that '_' are not allowed) and click on "Create a new role".
 ![Name Sagemaker Notebooks](/images/image-4.png)
 
-Select "Any S3 bucket" and clicke on "Create role"
+
+
+####Select "Any S3 bucket" and clicke on "Create role"
 ![Create IAM role for Sagemaker](/images/image-5.png)
 
-We now need to add a few more security policies to our newly created IAM SageMaker role.
 
-Click on newly created IAM SageMaker role
+
+#### We now need to add a few more security policies to our newly created IAM SageMaker role.
+
+#### Click on newly created IAM SageMaker role
 ![Create IAM role for Sagemaker](/images/image-6.png)
 
-Click on "Attach Policies" button
 
-Search for "EC2Container" and add AmazonEC2ContanerRegistryFullAccess policy (click on the radio button to the left)
+
+#### Click on "Attach Policies" button
+#### Search for "EC2Container" and add AmazonEC2ContanerRegistryFullAccess policy (click on the radio button to the left)
 ![Create IAM role for Sagemaker](/images/image-7.png)
 
-Search for "VPC" and add AmazonVPCAccess policy (click on the radio button to the left)
+
+
+#### Search for "VPC" and add AmazonVPCAccess policy (click on the radio button to the left)
 ![Create IAM role for Sagemaker](/images/image-8.png)
 
-Click on "Attach Policies" button. Your policy list for the SageMaker IAM role should look like this:
+
+
+#### Click on "Attach Policies" button. Your policy list for the SageMaker IAM role should look like this:
 ![Create IAM role for Sagemaker](/images/image-9.png)
 
-We need a custom policy to allow full access to CloudFormation service. 
+
+
+#### We need a custom policy to allow full access to CloudFormation service. 
 "Add in-line policy". Select JSON tab and paste the following:
 
 ```
@@ -70,23 +87,55 @@ We need a custom policy to allow full access to CloudFormation service.
 }
 ```
 
+
 ![Create IAM role for Sagemaker](/images/image-10.png)
 
-Give your policy a name and click on "Create Policy"
+#### Give your policy a name and click on "Create Policy"
 ![Create IAM role for Sagemaker](/images/image-11.png)
 
-Your policy list for the SageMaker IAM role should look like this:
+
+
+#### Your policy list for the SageMaker IAM role should look like this:
 ![Create IAM role for Sagemaker](/images/image-12.png)
 
 
 
+#### Switch to the previous browser tab with SageMaker Notebook, scroll down to "Git Repositories", click on "Repository" and select "Add Repository to Amazon SageMaker"
+![Create IAM role for Sagemaker](/images/image-13.png)
 
 
 
+#### Select 'GitHub repository icon', give it a name, past repo's URL (https://github.com/aws-samples/sagemaker-horovod-distributed-training) and click on "Add repository"
+![Create IAM role for Sagemaker](/images/image-14.png)
 
-- Navigate the above file structure to the notebook in 'notebooks' directory
-- If prompted, select Jupyter kernel conda_tensorflow_p36
-- Launch and execute the notebook. 
+
+
+#### If successful, you will see the Git repo listed under SageMaker Git Repositories:
+![Create IAM role for Sagemaker](/images/image-15.png)
+
+
+#### You can now close this browser's tab and go back to the previous tab where we were creating the notebook. Click on "refresh" button on Git Repositories pane. The github repo's name should now be available in the drop-down list. Select it and click on "Create Notebook Instance" at the bottom of the page.
+![Create IAM role for Sagemaker](/images/image-16.png)
+
+
+
+#### You will see your notebook in "Pending" status. It will take a few minutes for the Jupyter Server to start up and clone your repo. When the status changes to "InService", click on "Open Jupyter" next to the status.
+![Create IAM role for Sagemaker](/images/image-17.png)
+
+#### You will now see in a separate browser tab a familar Jupyter Notebook interface. Click on the file icon and you will see the repository that was checked out. Navigate into 'notebooks' directory and open two notebooks there:
+
+- tensorflow_script_mode_training_and_serving
+- tensorflow_script_mode_horovod
+![Create IAM role for Sagemaker](/images/image-18.png)
+
+
+
+#### It may take up to a minute for the notebooks to fully load into your browser and for the kernels to start up, so please, be patient.
+#### Click 'Cell' -> 'Run All' in both notebooks. Some cells in the notebooks may take up to 15 min to fully execute. Be patient.
+#### If prompted, select Jupyter kernel 'conda_tensorflow_p36'
+![Create IAM role for Sagemaker](/images/image-19.png)
+
+
 Note that depending on your choice of the host machine, it may take as long as 10 min to build the container the 1st time out. 
 
 ## License
