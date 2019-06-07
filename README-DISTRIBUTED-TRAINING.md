@@ -42,18 +42,21 @@ We now need to add a few more security policies to our newly created IAM SageMak
 Click on newly created IAM SageMaker role
 ![Create IAM role for Sagemaker](/images/image-6.png)
 
+Click on "Attach Policies" button
+
 Search for "EC2Container" and add AmazonEC2ContanerRegistryFullAccess policy (click on the radio button to the left)
 ![Create IAM role for Sagemaker](/images/image-7.png)
 
 Search for "VPC" and add AmazonVPCAccess policy (click on the radio button to the left)
 ![Create IAM role for Sagemaker](/images/image-8.png)
 
-Attach policies. Your policy list for the SageMaker IAM role should look like this
+Click on "Attach Policies" button. Your policy list for the SageMaker IAM role should look like this:
 ![Create IAM role for Sagemaker](/images/image-9.png)
 
 We need a custom policy to allow full access to CloudFormation service. 
-Scroll down and click on create in-line policy. Select JSON and paste the following:
+"Add in-line policy". Select JSON tab and paste the following:
 
+```
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -65,12 +68,15 @@ Scroll down and click on create in-line policy. Select JSON and paste the follow
         }
     ]
 }
+```
 
 ![Create IAM role for Sagemaker](/images/image-10.png)
 
 Give your policy a name and click on "Create Policy"
-![Create IAM role for Sagemaker](/images/image-9.png)
+![Create IAM role for Sagemaker](/images/image-11.png)
 
+Your policy list for the SageMaker IAM role should look like this:
+![Create IAM role for Sagemaker](/images/image-12.png)
 
 
 
