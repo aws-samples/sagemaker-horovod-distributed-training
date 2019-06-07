@@ -22,7 +22,11 @@ To reduce network delays between compute nodes, it is advisable to locate them w
 In this lab, we will be instantiating CPU compute nodes for simplicity and scalability. 
 
 ### Steps for launching Jupyter Notebook:
-#### Open SageMaker Console
+#### Select one of the following AWS Regions in your AWS console:
+![Navigate to Sagemaker Service](/images/image-20.png)
+
+
+#### Open SageMaker Console by clicking on "Services" and searching for Sagemaker
 ![Navigate to Sagemaker Service](/images/image-1.png)
 
 
