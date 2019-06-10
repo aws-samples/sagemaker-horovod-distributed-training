@@ -40,11 +40,12 @@ In this lab, we will be instantiating CPU compute nodes for simplicity and scala
 ![Creae Sagemaker Notebooks](/images/image-3.png)
 
 
+#### Give the SageMaker Notebook Instance a name (note that '_' are not allowed). 
+#### From the drop-down menu, select a compute instance type for your Jupyter Notebook. We recommend 'ml.t2.medium' for lowest cost.
+![Name Sagemaker Notebooks](/images/image-21.png)
 
-#### Give the SageMaker Notebook Instance a name (note that '_' are not allowed) and click on "Create a new role".
+#### In 'Permissions and encryption' pane click on "Create a new role".
 ![Name Sagemaker Notebooks](/images/image-4.png)
-
-
 
 #### Select "Any S3 bucket" and click on "Create role"
 ![Create IAM role for Sagemaker](/images/image-5.png)
