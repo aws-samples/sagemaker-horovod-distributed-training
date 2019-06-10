@@ -46,7 +46,7 @@ In this lab, we will be instantiating CPU compute nodes for simplicity and scala
 
 
 
-####Select "Any S3 bucket" and clicke on "Create role"
+#### Select "Any S3 bucket" and click on "Create role"
 ![Create IAM role for Sagemaker](/images/image-5.png)
 
 
@@ -141,6 +141,12 @@ In this lab, we will be instantiating CPU compute nodes for simplicity and scala
 
 
 Note that depending on your choice of the host machine, it may take as long as 10 min to build the container the 1st time out. 
+
+This work is based on two SageMaker examples available in AWS SageMaker Examples directory:
+- https://github.com/awslabs/amazon-sagemaker-examples/tree/master/sagemaker-python-sdk/tensorflow_script_mode_training_and_serving
+and
+- https://github.com/awslabs/amazon-sagemaker-examples/tree/af765120763364193f099af0b283767cc2228ad3/sagemaker-python-sdk/tensorflow_script_mode_horovod
+
 
 ## License
 
