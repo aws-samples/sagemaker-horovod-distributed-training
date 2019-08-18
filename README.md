@@ -50,14 +50,12 @@ In this lab, we will be instantiating CPU compute nodes for simplicity and scala
 #### Select "Any S3 bucket" and click on "Create role"
 ![Create IAM role for Sagemaker](/images/image-5.png)
 
-
+#### You will see a newly created IAM SageMaker role
+![Create IAM role for Sagemaker](/images/image-6.png)
 
 #### We now need to add a few more security policies to our newly created IAM SageMaker role.
 
 #### Click on newly created IAM SageMaker role
-![Create IAM role for Sagemaker](/images/image-6.png)
-
-
 
 #### Click on "Attach Policies" button
 #### Search for "EC2Container" and add AmazonEC2ContanerRegistryFullAccess policy (click on the radio button to the left)
