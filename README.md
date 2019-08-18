@@ -58,6 +58,8 @@ In this lab, we will be instantiating CPU compute nodes for simplicity and scala
 #### Click on newly created IAM SageMaker role
 
 #### Click on "Attach Policies" button
+![Create IAM role for Sagemaker](/images/image-22.png)
+
 #### Search for "EC2Container" and add AmazonEC2ContanerRegistryFullAccess policy (click on the radio button to the left)
 ![Create IAM role for Sagemaker](/images/image-7.png)
 
@@ -103,7 +105,7 @@ In this lab, we will be instantiating CPU compute nodes for simplicity and scala
 
 
 
-#### Switch to the previous browser tab with SageMaker Notebook, scroll down to "Git Repositories", click on "Repository" and select "Add Repository to Amazon SageMaker"
+#### Switch to the previous browser tab with SageMaker Notebook (you may close browser tab with IAM service), scroll down to "Git Repositories", click on "Repository" and select "Add Repository to Amazon SageMaker"
 ![Create IAM role for Sagemaker](/images/image-13.png)
 
 
